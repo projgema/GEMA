@@ -11,7 +11,7 @@ class Login extends CI_Controller {
 
     function index() {
         if ($this->session->userdata('logged_in')) {
-            redirect('admin', 'refresh');
+            redirect('kpg', 'refresh');
         } else {
             $this->load->helper('form');
             $this->load->view('login');

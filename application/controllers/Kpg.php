@@ -11,7 +11,7 @@
  *
  * @author notebook
  */
-class Admin extends CI_Controller {
+class Kpg extends CI_Controller {
     
     function __construct() {
         parent::__construct();
@@ -23,6 +23,7 @@ class Admin extends CI_Controller {
             $data['nama'] = $session_data['nama'];
             $data['username'] = $session_data['username'];
             $data['email'] = $session_data['email'];
+            $data['jenis_user'] = $session_data['jenis_user'];
             $this->load->view('kpg', $data);
     }
     

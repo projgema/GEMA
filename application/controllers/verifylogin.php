@@ -15,19 +15,20 @@ class VerifyLogin extends CI_Controller {
 
         $this->form_validation->set_rules('username', 'Username');
         $this->form_validation->set_rules('password', 'Password', 'callback_check_database');
-
-        if ($this->form_validation->run() == TRUE) {
-                redirect('admin', 'refresh');
+        
+        if ($this->form_validation->run() == FALSE) {
+            
+            $this->load->view('login');
         } else {
             //Go to private area
-            $this->load->view('login');		
+            redirect('kpg', 'refresh');
+            
         }
     }
 
     function check_database($password) {
         //Field validation succeeded. Validate against database
         $user = $this->input->post('username');
-
         //query the database
         $result = $this->user->login($user, $password);
 
@@ -42,9 +43,9 @@ class VerifyLogin extends CI_Controller {
                     'jenis_user' => $row->jenis_user
                 );
                 $this->session->set_userdata('logged_in', $sess_array);
-            }
             
-            return TRUE;
+            }
+                return TRUE;
         } else {
             $this->form_validation->set_message('check_database', 'Anda Bukan Admin GEMA');
             return false;
